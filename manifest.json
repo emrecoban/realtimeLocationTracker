@@ -1,0 +1,15 @@
+{
+  "name": "Location Tracker",
+  "short_name": "Tracker",
+  "start_url": "https://locationtracker.vercel.app",
+  "display": "standalone",
+  "background_color": "#eef0f4",
+  "description": "Realtime Location Tracker",
+  "icons": [
+    {
+      "src": "img/ico.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    }
+  ]
+}
