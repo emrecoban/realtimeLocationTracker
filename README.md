@@ -13,10 +13,28 @@ With the help of JavaScript, Firebase Realtime Database, and HTML Geolocation AP
 3. See all the locations includes you in database.
 
 > **Don't forget!**
-> Don't forget to grant location permissions and enable location sharing.
+> to grant location permissions and enable location sharing.
 
 ## Screenshots
 ![homepage](github_assets/ss1.png)
+
+## Database Structure
+```json
+{
+  "locations": {
+    "emrecoban": {
+      "label": "emrecoban",
+      "latitude": 41.2477,
+      "longitude": 36.2395
+    },
+    "emre's phone": {
+      "label": "emre's phone",
+      "latitude": 25.2467,
+      "longitude": 63.4395
+    }
+  }
+}
+```
 
 ## Built with
 - JavaScript
