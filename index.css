@@ -1,5 +1,6 @@
 html,
 body {
+  width: 100%;
   margin: 0;
   padding: 0;
   display: flex;
@@ -18,10 +19,23 @@ h4 p {
   padding: 0;
 }
 
-header{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+#locations {
+  width: 100%;
+  height: 500px;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #title {
