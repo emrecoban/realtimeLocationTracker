@@ -1,0 +1,15 @@
+{
+    "name": "Location Tracker",
+    "short_name": "Location Tracker",
+    "icons": [
+        {
+            "src": "img/android-chrome-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#eef0f4",
+    "background_color": "#eef0f4",
+    "start_url": "https://locationtracker.vercel.app",
+    "display": "standalone"
+}
