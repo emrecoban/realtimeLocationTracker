@@ -4,6 +4,11 @@ import {
   ref,
   update,
   onValue,
+  query,
+  startAt,
+  endAt,
+  orderByValue,
+  startAfter,
 } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-database.js";
 const firebaseConfig = {
   databaseURL:
@@ -32,6 +37,7 @@ function setLocation(position) {
     label: nickName.value,
     latitude: position.coords.latitude,
     longitude: position.coords.longitude,
+    timestamp: Date.now(),
   };
   const updates = {};
   updates["/locations/" + nickName.value] = userLocation;
@@ -54,27 +60,35 @@ async function initMap() {
 window.initMap = initMap();
 
 function getLocations() {
-  onValue(ref(database, "locations"), (snapShot) => {
+  const now = Date.now();
+  const oneMinuteAgo = now - (60 * 1000);
+  console.log("zaman => ", now)
+  const onlyOnline = query(ref(database, "locations"), orderByValue('timestamp'), startAfter(oneMinuteAgo));
+  onValue(onlyOnline, (snapShot) => {
     const data = snapShot.val();
-    const infoWindow = new google.maps.InfoWindow(); // Marker Info
-    removeMarkers();
-    markers = [];
-    Object.values(data).map((locData) => {
-      const newMarker = new google.maps.Marker({
-        position: new google.maps.LatLng(locData.latitude, locData.longitude),
-        map: map,
-        icon: "img/navigation.png",
-        title: locData.label,
-        optimized: false,
+    if(data){
+      const infoWindow = new google.maps.InfoWindow(); // Marker Info
+      removeMarkers();
+      markers = [];
+      Object.values(data).map((locData) => {
+        const newMarker = new google.maps.Marker({
+          position: new google.maps.LatLng(locData.latitude, locData.longitude),
+          map: map,
+          icon: "img/navigation.png",
+          title: locData.label,
+          optimized: false,
+        });
+        newMarker.addListener("click", () => {
+          infoWindow.close();
+          infoWindow.setContent(newMarker.getTitle());
+          infoWindow.open(newMarker.getMap(), newMarker);
+        });
+        markers.push(newMarker);
       });
-      newMarker.addListener("click", () => {
-        infoWindow.close();
-        infoWindow.setContent(newMarker.getTitle());
-        infoWindow.open(newMarker.getMap(), newMarker);
-      });
-      markers.push(newMarker);
-    });
-    showMarkers();
+      showMarkers();
+    }else{
+      console.log("uygun veri yok.")
+    }
   });
 }
 
