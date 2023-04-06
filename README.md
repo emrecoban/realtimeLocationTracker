@@ -12,6 +12,9 @@ With the help of JavaScript, Firebase Realtime Database, and HTML Geolocation AP
 2. Enter a nickname, and then click on the "Add my location to the map".
 3. See all the locations includes you in database.
 
+> **Don't forget!**
+> Don't forget to grant location permissions and enable location sharing.
+
 ## Screenshots
 ![homepage](github_assets/ss1.png)
 
