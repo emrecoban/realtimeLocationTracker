@@ -40,24 +40,59 @@ function setLocation(position) {
   getLocations();
 }
 
-function getLocations() {
-  onValue(ref(database, "locations"), (snapShot) => {
-    const data = snapShot.val();
-    console.log("Gelen veri => ", Object.values(data));
-  });
-}
+let markers = []
 
 let map;
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   map = new Map(document.getElementById("locations"), {
-    center: { lat: 38.9637, lng: 35.2433 },
-    zoom: 6,
+    center: { lat: 41.2797, lng: 36.3361 }, // Samsun, TR
+    zoom: 12,
   });
 }
 
-initMap();
+window.initMap = initMap();
+
+function getLocations() {
+  onValue(ref(database, "locations"), (snapShot) => {
+    const data = snapShot.val();
+    const infoWindow = new google.maps.InfoWindow(); // Marker Info
+    console.log("Gelen veri => ", Object.values(data));
+    removeMarkers();
+    markers = []
+    Object.values(data).map((locData)=>{
+        const newMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(locData.latitude, locData.longitude),
+            map: map,
+            icon: "img/navigation.png",
+            title: locData.label,
+            optimized: false,
+        });
+        newMarker.addListener("click", ()=>{
+            infoWindow.close();
+            infoWindow.setContent(newMarker.getTitle());
+            infoWindow.open(newMarker.getMap(), newMarker);
+        })
+        markers.push(newMarker);
+    })
+    showMarkers();
+  });
+}
+
+const setMapOnAll = (map)=>{
+    for (let i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
+}
+
+const showMarkers = ()=>{
+    setMapOnAll(map);
+}
+
+const removeMarkers = ()=>{
+    setMapOnAll(null);
+    markers = [];
+}
 
 console.log("Init database => ", database);
-
 // Google Maps API: AIzaSyAGCkfuPFMFAj-KloukOh3EyWJ7KceCQnY
