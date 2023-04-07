@@ -20,6 +20,7 @@
         <img src="img/ico.png" height="90" id="logo" />
         <h2 id="title">Realtime Location Tracker</h2>
       </header>
+      
       <fieldset>
         <legend>Login</legend>
         <input
@@ -30,7 +31,17 @@
           autocomplete="off"
         />
         <button id="addBtn">Add my location to the map</button>
+
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          Don't forget to grant location permissions and enable location sharing.
+        </div>
+        <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          You can test it by logging in with two different devices.
+        </div>
       </fieldset>
+      
       <div id="locations"></div>
     </main>
     <script src="index.js" type="module"></script>
