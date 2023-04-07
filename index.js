@@ -6,7 +6,6 @@ import {
   onValue,
   query,
   startAt,
-  endAt,
   orderByChild,
 } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-database.js";
 const firebaseConfig = {
@@ -51,8 +50,8 @@ let map;
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   map = new Map(document.getElementById("locations"), {
-    center: { lat: 47.5242803, lng: 21.1251003 },
-    zoom: 4,
+    center: { lat: 41.2797, lng: 36.3361 }, // Samsun, TR
+    zoom: 12,
   });
 }
 
@@ -62,7 +61,7 @@ function getLocations() {
   const now = Date.now();
   const oneMinuteAgo = now - (10 * 1000);
   console.log("zaman => ", now)
-  const onlyOnline = query(ref(database, "locations"), orderByChild('timestamp'), startAt(oneMinuteAgo), endAt(now + (10 * 1000)));
+  const onlyOnline = query(ref(database, "locations"), orderByChild('timestamp'), startAt(oneMinuteAgo));
   onValue(onlyOnline, (snapShot) => {
     const data = snapShot.val();
     if(data){
