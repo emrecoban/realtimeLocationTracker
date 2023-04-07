@@ -20,6 +20,20 @@ h4 p {
   padding: 0;
 }
 
+#signature{
+  position: absolute;
+  right: 0;
+  background-color: #03308b;
+}
+
+#signature a {
+  display: block;
+  padding: 6px;
+  color:#f0b985;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 main {
   width: 100%;
   display: flex;
