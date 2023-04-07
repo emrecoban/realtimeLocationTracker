@@ -9,6 +9,7 @@ body {
   font-family: "Rubik", sans-serif;
   background-color: #eef0f4;
   color: #432000;
+  user-select: none;
 }
 
 h1,
@@ -109,4 +110,47 @@ button:hover {
 /* When moving the mouse over the close button */
 .closebtn:hover {
   color: black;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  float: right;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  float: right;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+#latestLocations h3{
+  display: block;
+  padding: 10px;
+  background-color: #dce1eb;
+  border-radius: 8px;
+}
+
+#latestLocations h3:hover{
+  cursor: pointer;
+  background-color: #cedcf9;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
 }

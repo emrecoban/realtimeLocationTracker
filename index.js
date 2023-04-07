@@ -7,6 +7,9 @@ import {
   query,
   startAt,
   orderByChild,
+  get,
+  child,
+  limitToLast,
 } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-database.js";
 const firebaseConfig = {
   databaseURL:
@@ -16,6 +19,9 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const nickName = document.getElementById("nickname");
 const addBtn = document.getElementById("addBtn");
+const showList = document.getElementById("showList");
+const locationList = document.getElementById("locationList");
+const arrow = document.getElementById("arrow");
 
 addBtn.addEventListener("click", () => {
   if (nickName.value == "") {
@@ -104,5 +110,28 @@ const removeMarkers = () => {
   setMapOnAll(null);
   markers = [];
 };
+
+showList.addEventListener('click', ()=>{
+  if(locationList.classList.value === "hide"){
+    locationList.className = "show"
+    arrow.className = "arrow up"
+
+    get(query(ref(database, 'locations'), limitToLast(7))).then((snapshot) => {
+      if (snapshot.exists()) {
+        locationList.innerHTML = Object.values(snapshot.val()).map((location)=>{
+            return `<li><b>${location.label}</b> - ${location.latitude.toString().slice(0, 6)} ° N, ${location.longitude.toString().slice(0, 6)} ° E</li>`
+        }).join('');
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    
+  }else{
+    locationList.className = "hide"
+    arrow.className = "arrow down"
+  }
+});
 
 console.log("Init database => ", database);

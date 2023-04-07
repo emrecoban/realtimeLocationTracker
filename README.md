@@ -4,6 +4,7 @@ With the help of JavaScript, Firebase Realtime Database, and HTML Geolocation AP
 
 ## Features
 - Show realtime locations
+- Show latest locations (7) in database
 - Browser-based
 - Marker info
 
