@@ -10,7 +10,7 @@ With the help of JavaScript, Firebase Realtime Database, and HTML Geolocation AP
 ## Usage
 1. Go to [locationtracker.vercel.app](https://locationtracker.vercel.app) in any device.
 2. Enter a nickname, and then click on the "Add my location to the map".
-3. See all the locations includes you in database.
+3. Track only those who have been online on the map in the last 10 seconds.
 
 > **Don't forget!**
 > to grant location permissions and enable location sharing.
@@ -25,12 +25,14 @@ With the help of JavaScript, Firebase Realtime Database, and HTML Geolocation AP
     "emrecoban": {
       "label": "emrecoban",
       "latitude": 41.2477,
-      "longitude": 36.2395
+      "longitude": 36.2395,
+      "timestamp": 1680825786101,
     },
     "emre's phone": {
       "label": "emre's phone",
       "latitude": 25.2467,
-      "longitude": 63.4395
+      "longitude": 63.4395,
+      "timestamp": 1680825786101,
     }
   }
 }
