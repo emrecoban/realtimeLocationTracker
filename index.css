@@ -91,7 +91,7 @@ button:hover {
   padding: 20px;
   background-color: #46A8F5; /* Red */
   color: white;
-
+  border-radius: 8px;
 }
 
 /* The close button */
