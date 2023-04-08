@@ -8,7 +8,6 @@ import {
   startAt,
   orderByChild,
   get,
-  child,
   limitToLast,
 } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-database.js";
 const firebaseConfig = {
