@@ -115,7 +115,7 @@ showList.addEventListener('click', ()=>{
     locationList.className = "show"
     arrow.className = "arrow up"
 
-    get(query(ref(database, 'locations'), limitToLast(7))).then((snapshot) => {
+    get(query(ref(database, 'locations'),orderByChild('timestamp'), limitToLast(7))).then((snapshot) => {
       if (snapshot.exists()) {
         locationList.innerHTML = Object.values(snapshot.val()).map((location)=>{
             return `<li><b>${location.label}</b> - ${location.latitude.toString().slice(0, 6)} ° N, ${location.longitude.toString().slice(0, 6)} ° E</li>`
